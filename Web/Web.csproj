@@ -33,8 +33,4 @@
     <ProjectReference Include="..\Entity\Entity.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Utilities\Utilities.csproj" />
-  </ItemGroup>
-
 </Project>

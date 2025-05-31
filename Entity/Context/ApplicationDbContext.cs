@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 
 
-namespace Entity.aplication
+namespace Entity.Context
 {
     public class ApplicationDbContext : DbContext
     {

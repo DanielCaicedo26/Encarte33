@@ -1,6 +1,5 @@
-﻿
-using Entity.aplication;
-using Entity.models;    
+﻿using Entity.Context;
+using Entity.models;
 using Microsoft.EntityFrameworkCore;
 
 
