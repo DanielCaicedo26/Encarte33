@@ -41,6 +41,24 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+// Ejecutar migraciones automáticamente al iniciar la aplicación
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    try
+    {
+        // Crear la base de datos si no existe y aplicar migraciones pendientes
+        context.Database.Migrate();
+        Console.WriteLine("✅ Base de datos creada/actualizada correctamente");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"❌ Error al crear/actualizar la base de datos: {ex.Message}");
+        // En desarrollo, puedes comentar esta línea si quieres que la app continue sin BD
+        // throw;
+    }
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
