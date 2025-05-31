@@ -1,11 +1,10 @@
-﻿
+﻿using AutoMapper;
 using Business;
 using Data;
 using Entity.Dto;
 using Entity.models;
 
-
-namespace Businesss
+namespace Business
 {
     public class DetalleFacturaService : IDetalleFacturaService
     {

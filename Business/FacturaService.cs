@@ -1,8 +1,7 @@
-﻿
+﻿using AutoMapper;
 using Data;
 using Entity.Dto;
 using Entity.models;
-
 
 namespace Business
 {
@@ -77,14 +76,23 @@ namespace Business
 
         private void CalcularTotalesFactura(Factura factura)
         {
-            foreach (var detalle in factura.DetallesFactura)
+            if (factura.DetallesFactura != null && factura.DetallesFactura.Any())
             {
-                detalle.Subtotal = (detalle.Cantidad * detalle.PrecioUnitario) - detalle.Descuento;
-            }
+                foreach (var detalle in factura.DetallesFactura)
+                {
+                    detalle.Subtotal = (detalle.Cantidad * detalle.PrecioUnitario) - detalle.Descuento;
+                }
 
-            factura.Subtotal = factura.DetallesFactura.Sum(d => d.Subtotal);
-            factura.Impuesto = factura.Subtotal * 0.19m; // IVA 19%
-            factura.Total = factura.Subtotal + factura.Impuesto;
+                factura.Subtotal = factura.DetallesFactura.Sum(d => d.Subtotal);
+                factura.Impuesto = factura.Subtotal * 0.19m; // IVA 19%
+                factura.Total = factura.Subtotal + factura.Impuesto;
+            }
+            else
+            {
+                factura.Subtotal = 0;
+                factura.Impuesto = 0;
+                factura.Total = 0;
+            }
         }
     }
 }
